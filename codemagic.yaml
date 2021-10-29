@@ -45,9 +45,11 @@ workflows:
         script: |
           flutter config --enable-linux-desktop
       - name: Build Linux
-        script: flutter build linux --debug
+        script: flutter build linux
     artifacts:
       - build/linux/**/*.zip
+      - '*.snap'
+      - flutter_drive.log
     publishing:
       email:
         recipients:
