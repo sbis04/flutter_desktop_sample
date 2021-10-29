@@ -1,0 +1,54 @@
+workflows:
+  macos-workflow:
+    name: macOS workflow
+    instance_type: mac_mini
+    max_build_duration: 60
+    environment:
+      flutter: master
+      xcode: latest
+      cocoapods: default
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Configure for macOS
+        script: |
+          flutter config --enable-macos-desktop
+          find . -name "Podfile" -execdir pod install \;
+      - name: Build macOS
+        script: flutter build macos --debug
+    artifacts:
+      - build/macos/**/*.app.zip
+      - build/macos/**/*.pkg
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - sbis1999@gmail.com
+  linux-workflow:
+    name: Linux workflow
+    instance_type: linux
+    max_build_duration: 60
+    environment:
+      flutter: master
+      xcode: latest
+      cocoapods: default
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Configure for Linux
+        script: |
+          flutter config --enable-linux-desktop
+      - name: Build Linux
+        script: flutter build linux --debug
+    artifacts:
+      - build/linux/**/*.zip
+    publishing:
+      email:
+        recipients:
+          - sbis1999@gmail.com
