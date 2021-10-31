@@ -55,4 +55,5 @@ workflows:
         recipients:
           - sbis1999@gmail.com
       scripts:
-        - cp  -r build/linux/**/bundle $FCI_EXPORT_DIR/bundle
+        - name: Export bundle
+          script: cp  -r build/linux/x64/release/bundle $FCI_EXPORT_DIR/bundle
