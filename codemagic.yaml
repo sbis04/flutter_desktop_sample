@@ -47,7 +47,7 @@ workflows:
       - name: Build Linux
         script: flutter build linux
       - name: Export bundle
-        script: cp  -r build/linux/x64/release/bundle $FCI_EXPORT_DIR/bundle
+        script: cp -r build/linux/x64/release/bundle $FCI_EXPORT_DIR/bundle
     artifacts:
       - build/linux/**/*.zip
       - '*.snap'
