@@ -51,9 +51,10 @@ workflows:
       - '*.snap'
       - flutter_drive.log
     publishing:
-      email:
-        recipients:
-          - sbis1999@gmail.com
       scripts:
         - name: Export bundle
           script: cp  -r build/linux/x64/release/bundle $FCI_EXPORT_DIR/bundle
+      email:
+        recipients:
+          - sbis1999@gmail.com
+      
