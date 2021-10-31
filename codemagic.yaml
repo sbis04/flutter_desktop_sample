@@ -45,7 +45,7 @@ workflows:
         script: |
           flutter config --enable-linux-desktop
       - name: Build Linux
-        script: flutter build linux --debug
+        script: flutter build linux
     artifacts:
       - build/linux/**/*.zip
       - '*.snap'
@@ -54,3 +54,5 @@ workflows:
       email:
         recipients:
           - sbis1999@gmail.com
+      scripts:
+        - cp  -r build/linux/**/bundle $FCI_EXPORT_DIR/bundle
