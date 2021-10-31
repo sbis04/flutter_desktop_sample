@@ -43,7 +43,7 @@ workflows:
       - name: Build macOS
         script: flutter build macos
     artifacts:
-      - build/macos/**/*.app.zip
+      - build/macos/**/*.app
       - build/macos/**/*.pkg
       - flutter_drive.log
     publishing:
