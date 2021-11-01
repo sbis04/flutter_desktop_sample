@@ -44,7 +44,6 @@ workflows:
         script: flutter build macos
     artifacts:
       - build/macos/**/*.app
-      - build/macos/**/*.pkg
       - flutter_drive.log
     publishing:
       email:
@@ -56,8 +55,6 @@ workflows:
     max_build_duration: 60
     environment:
       flutter: master
-      xcode: latest
-      cocoapods: default
     cache:
       cache_paths:
         - ~/.pub-cache
@@ -73,7 +70,6 @@ workflows:
         script: cp -r build/linux/x64/release/bundle $FCI_EXPORT_DIR/bundle
     artifacts:
       - build/linux/**/*.zip
-      - '*.snap'
       - flutter_drive.log
     publishing:
       email:
