@@ -75,4 +75,37 @@ workflows:
       email:
         recipients:
           - sbis1999@gmail.com
+  linux-workflow-release:
+    name: Linux release workflow
+    instance_type: linux
+    max_build_duration: 60
+    environment:
+      vars:
+        SNAPCRAFT_BUILD_ENVIRONMENT: host
+      groups:
+          - snapcraft_credentials
+      flutter: master
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Configure for Linux
+        script: |
+          flutter config --enable-linux-desktop
+      - name: Login to Snapcraft
+        script: |
+          echo $SNAPCRAFT_LOGIN_CREDENTIALS | base64 --decode > /home/builder/snapcraft-login-credentials
+          snapcraft login --with /home/builder/snapcraft-login-credentials
+      - name: Create Snap package
+        script: snapcraft snap --output flutter-desktop-sample.snap
+      - name: Upload to Sanpcraft
+        script: snapcraft upload flutter-desktop-sample.snap --release stable
+    artifacts:
+      - '**/*.snap'
+    publishing:
+      email:
+        recipients:
+          - sbis1999@gmail.com
       
