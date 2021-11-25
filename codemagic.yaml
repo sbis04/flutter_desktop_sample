@@ -96,7 +96,7 @@ workflows:
           flutter config --enable-linux-desktop
       - name: Login to Snapcraft
         script: |
-          echo $SNAPCRAFT_LOGIN_CREDENTIAL | base64 --decode > /home/builder/snapcraft-login-credentials
+          echo $SNAPCRAFT_LOGIN_CREDENTIALS | base64 --decode > /home/builder/snapcraft-login-credentials
           snapcraft login --with /home/builder/snapcraft-login-credentials
       - name: Create Snap package
         script: snapcraft snap --output flutter-desktop-sample.snap
