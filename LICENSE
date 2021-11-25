@@ -1,10 +1,4 @@
-# Flutter Desktop Sample
-
-This is a sample project for Flutter Desktop (compatible with **macOS**, **Linux** and **Windows** platform). It also contains the `codemagic.yaml` configuration file for building the project on Codemagic (for macOS and Linux).
-
-![](screenshots/keyboard-key-combo.gif)
-
-## License
+MIT License
 
 Copyright (c) 2021 Souvik Biswas
 

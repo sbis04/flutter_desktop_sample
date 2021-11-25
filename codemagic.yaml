@@ -1,0 +1,78 @@
+workflows:
+  macos-workflow:
+    name: macOS workflow
+    instance_type: mac_mini
+    max_build_duration: 60
+    environment:
+      groups:
+        - macos-signing
+      flutter: master
+      xcode: latest
+      cocoapods: default
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Configure for macOS
+        script: |
+          flutter config --enable-macos-desktop
+          find . -name "Podfile" -execdir pod install \;
+      - name: Set up keychain
+        script: keychain initialize
+      - name: Set up provisioning profile
+        script: |
+          PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$PROFILES_HOME"
+          PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
+          echo ${FCI_PROVISIONING_PROFILE} | base64 --decode > "$PROFILE_PATH"
+          echo "Saved provisioning profile $PROFILE_PATH"          
+      - name: Set up signing certificate
+        script: |
+          echo $FCI_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+          if [ -z ${FCI_CERTIFICATE_PASSWORD+x} ]; then
+            # when using a certificate that is not password-protected
+            keychain add-certificates --certificate /tmp/certificate.p12
+          else
+            # when using a password-protected certificate
+            keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $FCI_CERTIFICATE_PASSWORD
+          fi   
+      - name: Set up code signing
+        script: xcode-project use-profiles
+      - name: Build macOS
+        script: flutter build macos
+    artifacts:
+      - build/macos/**/*.app
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - sbis1999@gmail.com
+  linux-workflow:
+    name: Linux workflow
+    instance_type: linux
+    max_build_duration: 60
+    environment:
+      flutter: master
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Configure for Linux
+        script: |
+          flutter config --enable-linux-desktop
+      - name: Build Linux
+        script: flutter build linux
+      - name: Export bundle
+        script: cp -r build/linux/x64/release/bundle $FCI_EXPORT_DIR/bundle
+    artifacts:
+      - build/linux/**/*.zip
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - sbis1999@gmail.com
+      
