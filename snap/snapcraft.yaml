@@ -5,14 +5,25 @@ description: Super Cool Counter App!
 
 confinement: strict
 base: core18
+grade: stable
+
+slots:
+  flutter-desktop-sample:
+    interface: dbus
+    bus: session
+    name: com.souvikbiswas.flutter-desktop-sample
+
+apps:
+  flutter-desktop-sample:
+    command: flutter_desktop_sample
+    extensions: [flutter-master]
+    plugs:
+      - network
+    slots:
+      - dbus-super-cool-app
 
 parts:
   flutter-desktop-sample:
     plugin: flutter
-    source: https://github.com/sbis04/flutter_desktop_sample.git
+    source: .
     flutter-target: lib/main.dart
-
-apps:
-  flutter-desktop-sample:
-    command: flutter-desktop-sample
-    extensions: [flutter-dev]
