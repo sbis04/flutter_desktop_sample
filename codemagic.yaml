@@ -80,10 +80,11 @@ workflows:
     instance_type: linux
     max_build_duration: 60
     environment:
+      vars:
+        SNAPCRAFT_BUILD_ENVIRONMENT: host
       groups:
           - snapcraft_credentials
       flutter: master
-      SNAPCRAFT_BUILD_ENVIRONMENT: host
     cache:
       cache_paths:
         - ~/.pub-cache
