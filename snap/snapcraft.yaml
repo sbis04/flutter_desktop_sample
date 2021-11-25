@@ -7,20 +7,10 @@ confinement: strict
 base: core18
 grade: stable
 
-slots:
-  flutter-desktop-sample:
-    interface: dbus
-    bus: session
-    name: com.souvikbiswas.flutter-desktop-sample
-
 apps:
   flutter-desktop-sample:
     command: flutter_desktop_sample
     extensions: [flutter-master]
-    plugs:
-      - network
-    slots:
-      - dbus-super-cool-app
 
 parts:
   flutter-desktop-sample:
