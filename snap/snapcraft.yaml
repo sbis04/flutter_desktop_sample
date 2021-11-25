@@ -1,0 +1,18 @@
+name: flutter-desktop-sample
+version: '1.0'
+summary: Desktop Counter App
+description: Super Cool Counter App!
+
+confinement: strict
+base: core18
+
+parts:
+  flutter-desktop-sample:
+    plugin: flutter
+    source: https://github.com/sbis04/flutter_desktop_sample.git
+    flutter-target: lib/main.dart
+
+apps:
+  flutter-desktop-sample:
+    command: flutter-desktop-sample
+    extensions: [flutter-dev]
