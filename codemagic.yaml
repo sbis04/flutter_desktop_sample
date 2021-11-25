@@ -100,7 +100,7 @@ workflows:
           snapcraft login --with /home/builder/snapcraft-login-credentials
       - name: Create Snap package
         script: snapcraft snap --output flutter-desktop-sample.snap
-      - name: Upload to Sanpcraft
+      - name: Upload to Snapcraft
         script: snapcraft upload flutter-desktop-sample.snap --release stable
     artifacts:
       - '**/*.snap'
