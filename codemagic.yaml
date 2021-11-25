@@ -80,7 +80,10 @@ workflows:
     instance_type: linux
     max_build_duration: 60
     environment:
+      groups:
+          - snapcraft_credentials
       flutter: master
+      SNAPCRAFT_BUILD_ENVIRONMENT: host
     cache:
       cache_paths:
         - ~/.pub-cache
@@ -90,11 +93,10 @@ workflows:
       - name: Configure for Linux
         script: |
           flutter config --enable-linux-desktop
-      - name: Build Linux
-        script: snapcraft
+      - name: Create Snap package
+        script: snapcraft snap --output flutter-desktop-sample.snap
     artifacts:
-      - build/linux/**/*.zip
-      - flutter_drive.log
+      - '**/*.snap'
     publishing:
       email:
         recipients:
