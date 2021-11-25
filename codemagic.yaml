@@ -75,4 +75,28 @@ workflows:
       email:
         recipients:
           - sbis1999@gmail.com
+  linux-workflow-release:
+    name: Linux release workflow
+    instance_type: linux
+    max_build_duration: 60
+    environment:
+      flutter: master
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Configure for Linux
+        script: |
+          flutter config --enable-linux-desktop
+      - name: Build Linux
+        script: snapcraft
+    artifacts:
+      - build/linux/**/*.zip
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - sbis1999@gmail.com
       
