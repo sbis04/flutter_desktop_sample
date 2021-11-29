@@ -1,8 +1,7 @@
 name: flutter-desktop-sample
 version: '1.0'
 summary: Desktop Counter App
-description: Super Cool Counter App!
-
+description: Super Cool Counter App.
 confinement: strict
 base: core18
 grade: stable
