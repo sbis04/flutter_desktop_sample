@@ -1,5 +1,5 @@
 name: flutter-desktop-sample
-version: '1.0'
+version: '1.1'
 summary: Desktop Counter App
 description: Super Cool Counter App.
 confinement: strict
