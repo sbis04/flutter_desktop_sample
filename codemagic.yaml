@@ -27,7 +27,7 @@ workflows:
           mkdir -p "$PROFILES_HOME"
           PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
           echo ${FCI_PROVISIONING_PROFILE} | base64 --decode > "$PROFILE_PATH"
-          echo "Saved provisioning profile $PROFILE_PATH"          
+          echo "Saved provisioning profile $PROFILE_PATH"
       - name: Set up signing certificate
         script: |
           echo $FCI_CERTIFICATE | base64 --decode > /tmp/certificate.p12
@@ -37,7 +37,7 @@ workflows:
           else
             # when using a password-protected certificate
             keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $FCI_CERTIFICATE_PASSWORD
-          fi   
+          fi
       - name: Set up code signing
         script: xcode-project use-profiles
       - name: Build macOS
@@ -83,7 +83,7 @@ workflows:
       vars:
         SNAPCRAFT_BUILD_ENVIRONMENT: host
       groups:
-          - snapcraft_credentials
+        - snapcraft_credentials
       flutter: master
     cache:
       cache_paths:
@@ -103,9 +103,8 @@ workflows:
       - name: Upload to Snapcraft
         script: snapcraft upload flutter-desktop-sample.snap --release stable
     artifacts:
-      - '**/*.snap'
+      - "**/*.snap"
     publishing:
       email:
         recipients:
           - sbis1999@gmail.com
-      
