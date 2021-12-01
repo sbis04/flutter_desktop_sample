@@ -126,7 +126,7 @@ workflows:
         script: flutter build windows --release
       - name: Export bundle
         script: |
-          cd build/web
+          cd build/windows
           7z a -r ../release.zip ./*
     artifacts:
       - build/windows/runner/*.zip
