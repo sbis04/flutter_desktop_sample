@@ -122,11 +122,11 @@ workflows:
         script: flutter packages pub get
       - name: Configure for Windows
         script: flutter config --enable-windows-desktop
-      - name: Build windows
-        script: flutter build windows --release
+      - name: Build Windows
+        script: flutter build windows
       - name: Export bundle
         script: |
-          cd build/windows
+          cd build/windows/runner/Release
           7z a -r ../release.zip ./*
     artifacts:
       - build/windows/runner/*.zip
