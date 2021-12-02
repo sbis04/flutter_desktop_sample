@@ -21,18 +21,18 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  msix: ^2.6.5
+  # msix: ^2.6.5
 
   flutter_lints: ^1.0.0
 
 flutter:
   uses-material-design: true
 
-msix_config:
-  display_name: Nevercode.FlutterDesktopSample
-  publisher_display_name: Nevercode
-  identity_name: Nevercode.Sample.FlutterDesktopSample
-  publisher: CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1
-  msix_version: 1.0.0.0
-  logo_path: ./logo/flutter-desktop-logo-256x256.png
-  store: true
+# msix_config:
+#   display_name: Nevercode.FlutterDesktopSample
+#   publisher_display_name: Nevercode
+#   identity_name: Nevercode.Sample.FlutterDesktopSample
+#   publisher: CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1
+#   msix_version: 1.0.0.0
+#   logo_path: ./logo/flutter-desktop-logo-256x256.png
+#   store: true
