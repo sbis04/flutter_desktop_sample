@@ -157,13 +157,7 @@ workflows:
       - name: Package Windows
         script: |
           flutter pub add msix
-          flutter pub run msix:create \
-          --display-name='Flutter Desktop' \
-          --publisher-display-name='Nevercode' \
-          --publisher='CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1' \
-          --identity-name='Nevercode.Sample.FlutterDesktopSample' \
-          --version=1.0.0.0 \
-          --logo-path='./logo/flutter-desktop-logo-256x256.png'
+          flutter pub run msix:create --display-name='Flutter Desktop' --publisher-display-name='Nevercode' --publisher='CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1' --identity-name='Nevercode.Sample.FlutterDesktopSample' --version=1.0.0.0 --logo-path='./logo/flutter-desktop-logo-256x256.png'
     artifacts:
       - build/windows/**/*.msix
     publishing:
