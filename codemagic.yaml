@@ -152,21 +152,21 @@ workflows:
         script: flutter config --enable-windows-desktop
       - name: Build Windows
         script: flutter build windows
-      # - name: Package Windows
-      #   script: flutter pub run msix:create
       - name: Package Windows
-        script: |
-          flutter pub add msix
-          flutter pub run msix:create --display-name='Flutter Desktop' --publisher-display-name='Nevercode' --publisher='CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1' --identity-name='Nevercode.Sample.FlutterDesktopSample' --version=1.0.0.0 --logo-path='./logo/flutter-desktop-logo-256x256.png'
+        script: flutter pub run msix:create
+      # - name: Package Windows
+      #   script: |
+      #     flutter pub add msix
+      #     flutter pub run msix:create --display-name='Flutter Desktop' --publisher-display-name='Nevercode' --publisher='CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1' --identity-name='Nevercode.Sample.FlutterDesktopSample' --version=1.0.0.0 --logo-path='./logo/flutter-desktop-logo-256x256.png'
     artifacts:
       - build/windows/**/*.msix
     publishing:
       email:
         recipients:
           - sbis1999@gmail.com
-      # publishing:
-      #   partner_center:
-      #     store_id: 9NLCRRSR2Z5L
-      #     tenant_id: aa80a389-47f3-47d8-ae60-bb7430667e03
-      #     client_id: 718d8461-20f2-471d-a8d7-bfca1fc5b1b7
-      #     client_secret: $PARTNER_CLIENT_SECRET
+      publishing:
+        partner_center:
+          store_id: 9NLCRRSR2Z5L
+          tenant_id: aa80a389-47f3-47d8-ae60-bb7430667e03
+          client_id: 718d8461-20f2-471d-a8d7-bfca1fc5b1b7
+          client_secret: $PARTNER_CLIENT_SECRET
