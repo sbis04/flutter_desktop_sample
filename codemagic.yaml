@@ -122,7 +122,7 @@ workflows:
         script: flutter packages pub get
       - name: Configure for Windows
         script: flutter config --enable-windows-desktop
-      - name: Build windows
+      - name: Build Windows
         script: flutter build windows --release
       - name: Export bundle
         script: |
@@ -134,3 +134,39 @@ workflows:
       email:
         recipients:
           - sbis1999@gmail.com
+  windows-release-workflow:
+    name: Windows workflow
+    instance_type: windows_x2
+    max_build_duration: 60
+    environment:
+      groups:
+        - windows-signing
+      flutter: master
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Configure for Windows
+        script: flutter config --enable-windows-desktop
+      - name: Build Windows
+        script: flutter build windows --release
+      - name: Package Windows
+        script: flutter pub run msix:create
+      # - name: Package windows
+      #   script: |
+      #     flutter pub add msix
+      #     flutter pub run msix:create --store --display-name=Nevercode.FlutterDesktopSample --publisher-display-name=Nevercode --publisher=CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1 --identity-name=Nevercode.Sample.FlutterDesktopSample --version=1.0.0.0
+    artifacts:
+      - build/windows/**/*.msix
+    publishing:
+      email:
+        recipients:
+          - sbis1999@gmail.com
+      # publishing:
+      #   partner_center:
+      #     store_id: 9NLCRRSR2Z5L
+      #     tenant_id: aa80a389-47f3-47d8-ae60-bb7430667e03
+      #     client_id: 718d8461-20f2-471d-a8d7-bfca1fc5b1b7
+      #     client_secret: $PARTNER_CLIENT_SECRET
