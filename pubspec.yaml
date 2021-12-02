@@ -35,4 +35,4 @@ msix_config:
   publisher: CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1
   msix_version: 1.0.0.0
   logo_path: ./logo/flutter-desktop-logo-256x256.png
-  store: false
+  store: true
