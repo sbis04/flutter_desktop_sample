@@ -123,10 +123,10 @@ workflows:
       - name: Configure for Windows
         script: flutter config --enable-windows-desktop
       - name: Build Windows
-        script: flutter build windows --release
+        script: flutter build windows
       - name: Export bundle
         script: |
-          cd build/windows
+          cd build/windows/runner/Release
           7z a -r ../release.zip ./*
     artifacts:
       - build/windows/runner/*.zip
@@ -151,7 +151,7 @@ workflows:
       - name: Configure for Windows
         script: flutter config --enable-windows-desktop
       - name: Build Windows
-        script: flutter build windows --release
+        script: flutter build windows
       - name: Package Windows
         script: flutter pub run msix:create
       # - name: Package windows
