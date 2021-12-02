@@ -164,9 +164,8 @@ workflows:
       email:
         recipients:
           - sbis1999@gmail.com
-      publishing:
-        partner_center:
-          store_id: 9NLCRRSR2Z5L
-          tenant_id: aa80a389-47f3-47d8-ae60-bb7430667e03
-          client_id: 718d8461-20f2-471d-a8d7-bfca1fc5b1b7
-          client_secret: $PARTNER_CLIENT_SECRET
+      partner_center:
+        store_id: 9NLCRRSR2Z5L
+        tenant_id: aa80a389-47f3-47d8-ae60-bb7430667e03
+        client_id: 718d8461-20f2-471d-a8d7-bfca1fc5b1b7
+        client_secret: $PARTNER_CLIENT_SECRET
