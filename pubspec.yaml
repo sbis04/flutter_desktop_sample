@@ -33,6 +33,6 @@ msix_config:
   publisher_display_name: Nevercode
   identity_name: Nevercode.FlutterDesktopSample
   publisher: CN=0A8E8178-6602-47FD-AEEF-48BC490D92B1
-  msix_version: 1.0.1.0
+  msix_version: 1.0.2.0
   logo_path: ./logo/flutter-desktop-logo-256x256.png
   store: true
